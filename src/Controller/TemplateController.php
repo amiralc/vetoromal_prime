@@ -11,7 +11,7 @@ class TemplateController extends AbstractController
     #[Route('/dashboard', name: 'app_template_admin')]
     public function dashboard_index(): Response
     {
-        return $this->render('dashboard/index.html.twig', [
+        return $this->render('index.html.twig', [
             'controller_name' => 'TemplateController',
         ]);
     }
