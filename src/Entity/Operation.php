@@ -32,6 +32,9 @@ class Operation
     #[ORM\ManyToOne(inversedBy: 'Operation')]
     private ?Maladie $maladie = null;
 
+    #[ORM\ManyToOne(inversedBy: 'operations')]
+    private ?Animal $animal = null;
+
    
 
     public function getId(): ?int
@@ -107,6 +110,18 @@ class Operation
     public function setMaladie(?Maladie $maladie): self
     {
         $this->maladie = $maladie;
+
+        return $this;
+    }
+
+    public function getAnimal(): ?Animal
+    {
+        return $this->animal;
+    }
+
+    public function setAnimal(?Animal $animal): self
+    {
+        $this->animal = $animal;
 
         return $this;
     }

@@ -23,6 +23,9 @@ class Commentaire
     #[ORM\ManyToOne(inversedBy: 'Commentaire')]
     private ?Actualite $actualite = null;
 
+    #[ORM\ManyToOne(inversedBy: 'commentaire')]
+    private ?Membre $membre = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Commentaire
     public function setActualite(?Actualite $actualite): self
     {
         $this->actualite = $actualite;
+
+        return $this;
+    }
+
+    public function getMembre(): ?Membre
+    {
+        return $this->membre;
+    }
+
+    public function setMembre(?Membre $membre): self
+    {
+        $this->membre = $membre;
 
         return $this;
     }

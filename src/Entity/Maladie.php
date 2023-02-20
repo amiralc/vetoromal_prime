@@ -34,6 +34,12 @@ class Maladie
     #[ORM\OneToMany(mappedBy: 'maladie', targetEntity: Operation::class)]
     private Collection $Operation;
 
+    #[ORM\OneToMany(mappedBy: 'maladie', targetEntity: Animal::class)]
+    private Collection $animals;
+
+    #[ORM\ManyToOne(inversedBy: 'maladies')]
+    private ?Animal $animal = null;
+
     public function __toString()
     {
         return $this->nom;
@@ -43,6 +49,7 @@ class Maladie
     public function __construct()
     {
         $this->Operation = new ArrayCollection();
+        $this->animals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -136,6 +143,48 @@ class Maladie
                 $operation->setMaladie(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Animal>
+     */
+    public function getAnimals(): Collection
+    {
+        return $this->animals;
+    }
+
+    public function addAnimal(Animal $animal): self
+    {
+        if (!$this->animals->contains($animal)) {
+            $this->animals->add($animal);
+            $animal->setMaladie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnimal(Animal $animal): self
+    {
+        if ($this->animals->removeElement($animal)) {
+            // set the owning side to null (unless already changed)
+            if ($animal->getMaladie() === $this) {
+                $animal->setMaladie(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAnimal(): ?Animal
+    {
+        return $this->animal;
+    }
+
+    public function setAnimal(?Animal $animal): self
+    {
+        $this->animal = $animal;
 
         return $this;
     }

@@ -33,6 +33,9 @@ class Actualite
 
     #[ORM\OneToMany(mappedBy: 'actualite', targetEntity: Commentaire::class)]
     private Collection $Commentaire;
+
+    #[ORM\ManyToOne(inversedBy: 'actualite')]
+    private ?Membre $membre = null;
     
     public function __toString()
     {
@@ -135,6 +138,18 @@ class Actualite
                 $commentaire->setActualite(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMembre(): ?Membre
+    {
+        return $this->membre;
+    }
+
+    public function setMembre(?Membre $membre): self
+    {
+        $this->membre = $membre;
 
         return $this;
     }
