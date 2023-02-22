@@ -44,21 +44,23 @@
                             <ul id="navigation">
                                 <li><a href="#">Actualite</a></li>
                                 <li><a href="#">Evenement</a></li>
-                                <li><a href="#">Consultation</a></li>
+                                <li><a href="#">Consultation<i class="fas fa-angle-down"></i></a>
+                                    <ul class="submenu">
+                                        <li><a href="{{ path('app_animal_new') }}">Ajouter Animal</a></li>
+                                        <li><a href="{{ path('app_rendez_vous_new') }}">Ajouter rendez-vous</a></li>
+
+
+                                    </ul>
+                                </li>
+
+
                                 <li class="new"><a href="#">Catalogue</a></li>
                                 <li><a href="#">Contact</a></li>
                                 <li><a href="#">Operation</a>
 
                                 </li>
 
-                                <li><a href="#">Profile<i class="fas fa-angle-down"></i></a>
-                                    <ul class="submenu">
-                                        <li><a href="#">Logout</a></li>
-                                        <li><a href="#">Edit profile</a></li>
-                                        <li><a href="#">change password</a></li>
 
-                                    </ul>
-                                </li>
                             </ul>
                         </nav>
                     </div>
