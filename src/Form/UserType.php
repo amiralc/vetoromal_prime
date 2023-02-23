@@ -36,7 +36,8 @@ class UserType extends AbstractType
         'multiple'=> false,
         'expanded'=> false,
         'choices'=> [
-            'User'=> 'ROLE_USER',
+            'Patient'=> 'ROLE_USER',
+            'Veterinaire'=> 'ROLE_USER',
             'Admin'=> 'ROLE_ADMIN',
         ],
     ])

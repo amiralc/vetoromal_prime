@@ -1,0 +1,50 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Membres index{% endblock %}
+
+{% block body %}
+    <h1> la liste Des Membres </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Date_naiss</th>
+                <th>Telephone</th>
+                <th>Adress</th>
+                <th>Role</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for membre in membres %}
+            <tr>
+                <td>{{ membre.id }}</td>
+                <td>{{ membre.nom }}</td>
+                <td>{{ membre.prenom }}</td>
+                <td>{{ membre.email }}</td>
+                <td>{{ membre.password }}</td>
+                <td>{{ membre.dateNaiss ? membre.dateNaiss|date('Y-m-d') : '' }}</td>
+                <td>{{ membre.telephone }}</td>
+                <td>{{ membre.adress }}</td>
+                <td>{{ membre.role ? membre.role|json_encode : '' }}</td>
+                <td>
+                    <a href="{{ path('app_membre_delete', {'id': membre.id}) }}">Delete</a>
+                    <a href="{{ path('app_membre_show', {'id': membre.id}) }}">show</a>
+                    <a href="{{ path('app_membre_edit', {'id': membre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_membre_new') }}">Create new</a>
+{% endblock %}
