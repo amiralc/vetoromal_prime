@@ -41,6 +41,26 @@ class MembreController extends AbstractController
             'form' => $form,
         ]);
     }
+    #[Route('/new_membre_back', name: 'app_membre_new_back', methods: ['GET', 'POST'])]
+    public function new_back(Request $request, MembreRepository $membreRepository): Response
+    {
+        $membre = new Membre();
+        $form = $this->createForm(MembreType::class, $membre);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager ->persist($membre);
+            $entityManager ->flush();
+            return $this->redirectToRoute('app_membre_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('membre/new_back.html.twig', [
+            'membre' => $membre,
+            'form' => $form,
+        ]);
+    }
 
     #[Route('/{id}', name: 'app_membre_show', methods: ['GET'])]
     public function show(Membre $membre): Response

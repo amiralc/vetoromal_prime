@@ -1,9 +1,9 @@
-{% extends 'base1.html.twig' %}
+{% extends 'home/index.html.twig' %}
 
 {% block title %}Nouvel Utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Inscrire un nouvel utilisateur</h1>
+    <h1>S'inscrire</h1>
 
     <div class="content-page">
         <!-- Start content -->
@@ -111,7 +111,6 @@
                                     {{ include('membre/_form.html.twig') }}
 
 
-                                    <a href="{{ path('app_membre_index') }}">retour à la list</a></button>
 
 
                                 </div>
